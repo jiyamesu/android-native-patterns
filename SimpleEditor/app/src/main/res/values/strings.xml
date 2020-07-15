@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SimpleEditor</string>
+    <string name="lblTextEditor">Please, write any text below:</string>
+    <string name="simpleEditorPlaceHoldTxt">Write any text</string>
+    <string name="btnUndoChange">Undo Change</string>
+    <string name="name">Name</string>
+</resources>
