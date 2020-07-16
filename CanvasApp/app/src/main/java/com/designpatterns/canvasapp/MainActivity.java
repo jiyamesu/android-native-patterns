@@ -15,4 +15,8 @@ public class MainActivity extends AppCompatActivity {
     private void methodOne(){
         System.out.println("This is a message.");
     }
+
+    private void methodTwo() {
+        System.out.println("This a second message!");
+    }
 }
