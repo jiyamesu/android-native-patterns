@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CanvasApp</string>
+    <string name="btnHello">Hello!</string>
+    <string name="my_view_desc">This is a description.</string>
+    <string name="btnClearCanvas">Clear Canvas</string>
+    <string name="btnRectTool">Rectangle</string>
+    <string name="btnCircleTool">Circle</string>
 </resources>
