@@ -70,30 +70,49 @@ public class CanvasBrush extends View {
         }
     }
 
+    private void touchDown(MotionEvent event) {
+
+    }
+
+    private void touchUp(MotionEvent event) {
+
+    }
+
+    private void touchMove(MotionEvent event) {
+        switch (currentTool) {
+            case ("ellipseTool"): {
+                drawEllipseShape((int) event.getX(), (int) event.getY(), 15, 15);
+                this.postInvalidate((int) event.getX(), (int) event.getY(), ((int) event.getX() + 15), ((int) event.getY() + 15));
+                break;
+            }
+
+            case ("rectTool"): {
+                drawRectShape(event);
+                this.postInvalidate((int) event.getX(), (int) event.getY(), ((int) event.getX() + 15), ((int) event.getY() + 15));
+                break;
+            }
+        }
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int action = MotionEventCompat.getActionMasked(event);
 
         switch(action){
-            case (MotionEvent.ACTION_DOWN):
+            case (MotionEvent.ACTION_DOWN): {
+                touchDown(event);
                 return true;
+            }
 
-            case (MotionEvent.ACTION_UP):
+            case (MotionEvent.ACTION_UP): {
+                touchUp(event);
                 return true;
+            }
 
-            case (MotionEvent.ACTION_MOVE):
-                switch (currentTool) {
-                    case ("ellipseTool"):
-                        drawEllipseShape((int) event.getX(), (int) event.getY(), 15, 15);
-                        this.postInvalidate((int) event.getX(), (int) event.getY(), ((int) event.getX() + 15), ((int) event.getY() + 15));
-                        break;
-
-                    case ("rectTool"):
-                        drawRectShape(event);
-                        this.postInvalidate((int) event.getX(), (int) event.getY(), ((int) event.getX() + 15), ((int) event.getY() + 15));
-                        break;
-                }
+            case (MotionEvent.ACTION_MOVE): {
+                touchMove(event);
                 return true;
+            }
         }
 
         return super.onTouchEvent(event);
