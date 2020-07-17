@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CanvasApp</string>
+    <string name="btnHello">Hello!</string>
 </resources>
