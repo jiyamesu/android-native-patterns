@@ -11,10 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-
-import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.core.view.MotionEventCompat;
 
@@ -23,6 +19,8 @@ import java.util.ArrayList;
 public class CanvasBrush extends View {
 
     private String currentTool = "ellipseTool";
+
+    private ShapeDrawable drawable;
 
     private ArrayList<ShapeDrawable> shapeDrawables = new ArrayList<>();
 
@@ -42,7 +40,6 @@ public class CanvasBrush extends View {
 
         shapeDrawables.add(shapeDrawable);
     }
-
 
     protected void drawTextShape(MotionEvent event) {
         ShapeDrawable shapeDrawable = new ShapeDrawable(new RectShape());
@@ -65,6 +62,7 @@ public class CanvasBrush extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
+
         for (ShapeDrawable shape:shapeDrawables) {
             shape.draw(canvas);
         }
@@ -93,6 +91,8 @@ public class CanvasBrush extends View {
                         this.postInvalidate((int) event.getX(), (int) event.getY(), ((int) event.getX() + 15), ((int) event.getY() + 15));
                         break;
                 }
+
+
                 return true;
         }
 
