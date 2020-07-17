@@ -1,0 +1,32 @@
+PROCESSO DE CRIAÇÃO DO APP SIMPLEDRAWING
+
+App SimpleDrawing v1
+
+UI
+
++------------------------------+
+|                              |
+|  <lblCurrentToolSelected>    |
+|  +-------------------------+ |
+|                              |
+|            <Canvas>          |
+|                              |
+|  +-------------------------+ |
+|                              |
+|  <toggleButtonBrushTool>     |
+|  <toggleButtonEraserTool>    |
+|                              |
++------------------------------+
+
+PASSOS:
+
+1. Explorar componentes de UI e eventos adequados para uma experiência de uso
+   mais conveniente para touchscreen
+
+2. Investigar qual o componente mais simples de UI podemos usar para desenhar
+   imagens bitmaps na tela do celular
+
+3. Montar um código tradicional, sem nenhum padrão, possibilitando realizar
+   o propósito do App, ou seja, para desenhar na tela.
+
+4. Utilizar o State Pattern, refatorando o código.  
