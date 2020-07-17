@@ -30,3 +30,13 @@ PASSOS:
    o propósito do App, ou seja, para desenhar na tela.
 
 4. Utilizar o State Pattern, refatorando o código.  
+
+
+
+TODO
+1. Estudar o princípio do Polimorfismo e implementar algum exemplo
+2. Estudar o state pattern com o Mosh
+3. Criar um diagrama de classe com o padrão a ser implementado
+
+
+
