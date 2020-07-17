@@ -6,23 +6,46 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity  {
 
-    private Button btnHello;
+    private Button btnClearCanvas;
+    private Button btnRectTool;
+    private Button btnCircleTool;
+
+    private CanvasBrush canvasBrush;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
-        btnHello = (Button) findViewById(R.id.btnHello);
-        btnHello.setOnClickListener(this);
+        btnClearCanvas = (Button) findViewById(R.id.btnClearCanvas);
+        btnRectTool = (Button) findViewById(R.id.btnRectTool);
+        btnCircleTool = (Button) findViewById(R.id.btnCircleTool);
 
+        canvasBrush = (CanvasBrush) findViewById(R.id.canvasBrush);
+
+        btnClearCanvas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                canvasBrush.clearAll();
+            }
+        });
+
+        btnRectTool.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                canvasBrush.setCurrentTool("rectTool");
+            }
+        });
+
+        btnCircleTool.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                canvasBrush.setCurrentTool("ellipseTool");
+            }
+        });
     }
 
-    @Override
-    public void onClick(View view) {
-        System.out.println(">>>>>>>>>>>> hello");
-
-    }
 }
