@@ -36,14 +36,14 @@ public class MainActivity extends AppCompatActivity  {
         btnRectTool.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                canvasBrush.setCurrentTool("rectTool");
+                canvasBrush.setCurrentTool(ToolType.RECTANGLE);
             }
         });
 
         btnCircleTool.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                canvasBrush.setCurrentTool("ellipseTool");
+                canvasBrush.setCurrentTool(ToolType.CIRCLE);
             }
         });
     }

@@ -5,16 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.graphics.drawable.shapes.RectShape;
-import android.graphics.drawable.shapes.Shape;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-
-import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.core.view.MotionEventCompat;
 
@@ -22,7 +17,7 @@ import java.util.ArrayList;
 
 public class CanvasBrush extends View {
 
-    private String currentTool = "ellipseTool";
+    private ToolType currentTool;
 
     private ArrayList<ShapeDrawable> shapeDrawables = new ArrayList<>();
 
@@ -79,19 +74,16 @@ public class CanvasBrush extends View {
     }
 
     private void touchMove(MotionEvent event) {
-        switch (currentTool) {
-            case ("ellipseTool"): {
-                drawEllipseShape((int) event.getX(), (int) event.getY(), 15, 15);
-                this.postInvalidate((int) event.getX(), (int) event.getY(), ((int) event.getX() + 15), ((int) event.getY() + 15));
-                break;
-            }
-
-            case ("rectTool"): {
-                drawRectShape(event);
-                this.postInvalidate((int) event.getX(), (int) event.getY(), ((int) event.getX() + 15), ((int) event.getY() + 15));
-                break;
-            }
+        if (currentTool == ToolType.CIRCLE) {
+            drawEllipseShape((int) event.getX(), (int) event.getY(), 15, 15);
+            this.postInvalidate((int) event.getX(), (int) event.getY(), ((int) event.getX() + 15), ((int) event.getY() + 15));
         }
+
+        else if (currentTool == ToolType.RECTANGLE) {
+            drawRectShape(event);
+            this.postInvalidate((int) event.getX(), (int) event.getY(), ((int) event.getX() + 15), ((int) event.getY() + 15));
+        }
+
     }
 
     @Override
@@ -124,11 +116,11 @@ public class CanvasBrush extends View {
         this.invalidate();
     }
 
-    public String getCurrentTool() {
+    public ToolType getCurrentTool() {
         return currentTool;
     }
 
-    public void setCurrentTool(String currentTool) {
+    public void setCurrentTool(ToolType currentTool) {
         this.currentTool = currentTool;
     }
 }
