@@ -2,13 +2,9 @@ package com.designpatterns.canvasapp;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
-import android.graphics.drawable.shapes.RectShape;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.core.view.MotionEventCompat;
@@ -19,49 +15,40 @@ public class CanvasBrush extends View {
 
     private ToolType currentTool;
 
-    private ArrayList<ShapeDrawable> shapeDrawables = new ArrayList<>();
+    private ArrayList<NativeShape> shapes = new ArrayList<>();
 
     public CanvasBrush(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         setContentDescription(context.getResources().getString(R.string.my_view_desc));
-
     }
 
-    protected void drawEllipseShape(int x, int y, int width, int height){
-        ShapeDrawable shapeDrawable = new ShapeDrawable(new OvalShape());
-
-        shapeDrawable.getPaint().setColor(0xff74AC23);
-
-        shapeDrawable.setBounds(x, y, x + width, y + height);
-
-        shapeDrawables.add(shapeDrawable);
+    protected void drawEllipseShape(MotionEvent event){
+        // TODO
     }
 
 
     protected void drawTextShape(MotionEvent event) {
-        ShapeDrawable shapeDrawable = new ShapeDrawable(new RectShape());
-        TextView text = new TextView(this.getContext());
-
-        text.setText("Hello!");
-        text.setX(event.getX());
-        text.setY(event.getY());
+        // TODO
     }
 
     protected void drawRectShape(MotionEvent event) {
-        ShapeDrawable shapeDrawable = new ShapeDrawable(new RectShape());
+        RectangleShape rectangleShape = new RectangleShape();
 
-        shapeDrawable.getPaint().setColor(0xff74AC23);
+        rectangleShape.getCoord().setX(event.getX());
+        rectangleShape.getCoord().setY(event.getY());
 
-        shapeDrawable.setBounds((int) event.getX(), (int) event.getY(), (int) event.getX() + 100, (int) event.getY() + 40);
+        rectangleShape.refreshBounds();
+        invalidate();
 
-        shapeDrawables.add(shapeDrawable);
+        shapes.add(rectangleShape);
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        for (ShapeDrawable shape:shapeDrawables) {
-            shape.draw(canvas);
+        for (NativeShape shape : shapes) {
+            shape.setCanvas(canvas);
+            shape.draw();
         }
     }
 
@@ -75,15 +62,10 @@ public class CanvasBrush extends View {
 
     private void touchMove(MotionEvent event) {
         if (currentTool == ToolType.CIRCLE) {
-            drawEllipseShape((int) event.getX(), (int) event.getY(), 15, 15);
-            this.postInvalidate((int) event.getX(), (int) event.getY(), ((int) event.getX() + 15), ((int) event.getY() + 15));
-        }
-
-        else if (currentTool == ToolType.RECTANGLE) {
+            // TODO
+        } else if (currentTool == ToolType.RECTANGLE) {
             drawRectShape(event);
-            this.postInvalidate((int) event.getX(), (int) event.getY(), ((int) event.getX() + 15), ((int) event.getY() + 15));
         }
-
     }
 
     @Override
@@ -111,7 +93,7 @@ public class CanvasBrush extends View {
     }
 
     public void clearAll() {
-        shapeDrawables.clear();
+        shapes.clear();
 
         this.invalidate();
     }
